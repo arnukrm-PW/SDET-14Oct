@@ -3,7 +3,8 @@ const testData =[ {
     password:"secret_sauce",
     expected:"success"
 
-},{
+},
+{
 
   username:"locked_out_user",
     password:"secret_sauce",
@@ -12,6 +13,22 @@ const testData =[ {
 },
 {
       username:"problem_user",
+    password:"secret_sauce",
+    expected:"success"
+}
+,
+{
+      username:"performance_glitch_user",
+    password:"secret_sauce",
+    expected:"success"
+},
+{
+      username:"error_user",
+    password:"secret_sauce",
+    expected:"success"
+},
+{
+      username:"visual_user",
     password:"secret_sauce",
     expected:"success"
 }
