@@ -21,7 +21,7 @@ for (const data of testData) {
                 loginPage = new LoginPage(page)
                 productPage = new ProductPage(page)
                 cartPage = new CartPage(page)
-                await loginPage.navigateToURL(BASE_URL)
+                await loginPage.navigateToURL(BASE_URL) //added BASE_URL
                 await loginPage.LoginMethod(data.username, data.password)
             })
             test("TC01_verify successful login", async ({ page }) => {
