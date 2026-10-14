@@ -9,7 +9,7 @@ const ENV_URL={
     prod:process.env.prod_URL
 }
 const ENV = process.env.ENV || "qa"
-const base_URL = ENV_URL[ENV]
+const BASE_URL = ENV_URL[ENV]
 
 
-module.exports={base_URL}
+module.exports={BASE_URL}
