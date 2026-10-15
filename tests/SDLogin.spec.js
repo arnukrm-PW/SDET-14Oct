@@ -3,7 +3,7 @@ const ProductPage = require('../pages/ProductPage')
 const CartPage = require("../pages/CartPage")
 const testData = require("../Test-Data/test-data")
 const { test, expect, devices } = require("@playwright/test")
-const { base_URL } = require('../utils/envConfig')
+const { BASE_URL } = require('../utils/envConfig')
 
 // const {defaultBrowserType,...iPhone 17e}=devices["iPhone 17e"]
 // console.log(Object.keys(devices).filter(name => name.toLowerCase().includes("iPhone")))
@@ -17,12 +17,11 @@ for (const data of testData) {
             let productPage;
             let cartPage;
             test.beforeEach("setup and teardown", async ({ page }) => {
-
-                loginPage = new LoginPage(page)
-                productPage = new ProductPage(page)
-                cartPage = new CartPage(page)
-                await loginPage.navigateToURL(base_URL)
-                await loginPage.LoginMethod(data.username, data.password)
+                loginPage = new LoginPage(page);
+                  productPage = new ProductPage(page);
+                 cartPage = new CartPage(page);
+                 await page.goto("https://www.saucedemo.com/inventory.html")
+            //    await loginPage.navigateToURL(BASE_URL)
             })
             test("TC01_verify successful login", async ({ page }) => {
                 await expect(page.getByText("Products")).toBeVisible()
@@ -93,7 +92,7 @@ for (const data of testData) {
         test(`Locked User ${data.username}`, async ({ page }) => {
 
             let loginPage = new LoginPage(page)
-            await loginPage.navigateToURL(base_URL)
+            await loginPage.navigateToURL(BASE_URL)
             await loginPage.fillUsername(data.username)
             await loginPage.fillPassword(data.password)
             await loginPage.clickLoginBtn()
