@@ -17,12 +17,11 @@ for (const data of testData) {
             let productPage;
             let cartPage;
             test.beforeEach("setup and teardown", async ({ page }) => {
-
-                loginPage = new LoginPage(page)
-                productPage = new ProductPage(page)
-                cartPage = new CartPage(page)
-                await loginPage.navigateToURL(BASE_URL) //added BASE_URL
-                await loginPage.LoginMethod(data.username, data.password)
+                loginPage = new LoginPage(page);
+                  productPage = new ProductPage(page);
+                 cartPage = new CartPage(page);
+                 await page.goto("https://www.saucedemo.com/inventory.html")
+            //    await loginPage.navigateToURL(BASE_URL)
             })
             test("TC01_verify successful login", async ({ page }) => {
                 await expect(page.getByText("Products")).toBeVisible()
