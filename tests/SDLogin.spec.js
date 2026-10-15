@@ -3,7 +3,7 @@ const ProductPage = require('../pages/ProductPage')
 const CartPage = require("../pages/CartPage")
 const testData = require("../Test-Data/test-data")
 const { test, expect, devices } = require("@playwright/test")
-const { BASE_URL,INVENTORY_URL } = require('../utils/envConfig')
+const { BASE_URL, INVENTORY_URL } = require('../utils/envConfig')
 
 // const {defaultBrowserType,...iPhone 17e}=devices["iPhone 17e"]
 // console.log(Object.keys(devices).filter(name => name.toLowerCase().includes("iPhone")))
@@ -18,10 +18,10 @@ for (const data of testData) {
             let cartPage;
             test.beforeEach("setup and teardown", async ({ page }) => {
                 loginPage = new LoginPage(page);
-                  productPage = new ProductPage(page);
-                 cartPage = new CartPage(page);
-                 await page.goto(INVENTORY_URL)
-            //    await loginPage.navigateToURL(BASE_URL)
+                productPage = new ProductPage(page);
+                cartPage = new CartPage(page);
+                await page.goto(INVENTORY_URL)
+                //    await loginPage.navigateToURL(BASE_URL)
             })
             test("TC01_verify successful login", async ({ page }) => {
                 await expect(page.getByText("Products")).toBeVisible()
@@ -87,29 +87,29 @@ for (const data of testData) {
                 await expect(await cartPage.verifyShopingBadge()).toHaveCount(0)
             })
 
-            test.only("TC11_verify fb link",async ({page})=>{
+            test("TC11_verify fb link", async ({ page }) => {
                 const [newPage] = await Promise.all([
-                page.waitForEvent("popup"),
-                productPage.clickFB(),
-                               ])
-          await   newPage.waitForLoadState('domcontentloaded')
+                    page.waitForEvent("popup"),
+                    productPage.clickFB(),
+                ])
+                await newPage.waitForLoadState('domcontentloaded')
             })
 
-            test.only("TC12_verify LinkedIn Page",async({page})=>{
-              const [newPage] =  await Promise.all([
+            test("TC12_verify LinkedIn Page", async ({ page }) => {
+                const [newPage] = await Promise.all([
                     page.context().waitForEvent('page'),
                     productPage.clickLinkedIn()
                 ])
-              await   newPage.waitForLoadState('domcontentloaded')
+                await newPage.waitForLoadState('domcontentloaded')
             })
-            test.only("TC13_verify twiter Link",async({page})=>{
-                const[newPage]= await Promise.all([
+            test("TC13_verify twiter Link", async ({ page }) => {
+                const [newPage] = await Promise.all([
                     page.context().waitForEvent('page'),
                     productPage.clickTwitter()
                 ])
                 await newPage.waitForLoadState('domcontentloaded')
                 await expect(newPage.locator('[data-icon="icon-logo-x"]').first()).toBeVisible()
-            
+
             })
 
         })
