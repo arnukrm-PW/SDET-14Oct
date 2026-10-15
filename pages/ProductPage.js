@@ -13,6 +13,9 @@ class ProductPage  {
         this.productNames = page.locator('.inventory_item_name')
         this.productPrice = page.locator(".inventory_item_price")
         this.shoppingCart = page.locator('[data-test="shopping-cart-link"]')
+        this.fbpage = page.getByRole("link",{name:"Facebook"})
+        this.LinkedIn = page.getByRole('link',{name:'LinkedIn'})
+        this.twitter = page.getByRole('link',{name:'X'})
     }
 // 5. getProductCount() method se product count return karein.
 async getProductCount(){
@@ -54,6 +57,15 @@ async removeProductToCart(prodNameToRemove){
 }
 async clickShopingCart(){
     await this.shoppingCart.click()
+}
+async clickFB(){
+              await    this.fbpage.click()   
+}
+async clickLinkedIn(){
+   await  this.LinkedIn.click()
+}
+async clickTwitter(){
+    await this.twitter.click()
 }
 }
 module.exports=ProductPage
