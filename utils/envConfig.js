@@ -10,8 +10,8 @@ const ENV_URL={
 }
 const ENV = process.env.ENV || "qa"
 const BASE_URL = process.env.BASE_URL ||ENV_URL[ENV]
-
+const INVENTORY_URL = process.env.INVENTORY_URL
 if (!BASE_URL) {
     throw new Error(`BASE_URL missing for ENV: ${ENV}`);
 }
-module.exports={BASE_URL}
+module.exports={BASE_URL,INVENTORY_URL}
