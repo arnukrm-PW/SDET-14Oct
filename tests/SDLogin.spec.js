@@ -108,7 +108,7 @@ for (const data of testData) {
                     productPage.clickTwitter()
                 ])
                 await newPage.waitForLoadState('domcontentloaded')
-                await expect(newPage.locator('[data-icon="icon-logo-x"]').first()).toBeVisible()
+                await expect(await newPage.locator('[data-icon="icon-logo-x"]').first()).toBeVisible()
 
             })
 
